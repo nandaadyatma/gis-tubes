@@ -1,0 +1,98 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar {
+    background-color: #ffffff;
+    color: rgb(105, 105, 107);
+    padding: 10px 20px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
+.main-content {
+    display: flex;
+    height: calc(100% - 40px); /* Adjust based on navbar height */
+}
+
+#map {
+    margin-top: 60px;
+    flex-grow: 1;
+    background-color: #ddd;
+    position: relative;
+}
+
+.sidebar {
+    padding-top: 80px;
+    width: 0%;
+    height: 100vh;
+    background-color: #ffffff;
+    position: relative; /* For the close button */
+    overflow: scroll;
+}
+
+#sidebar, #map {
+    transition: width 0.5s ease, padding 0.5s ease; /* Menambahkan transisi dengan durasi 0.5 detik */
+  }
+
+.close-btn {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 200;
+    overflow: visible;
+    cursor: pointer;
+}
+
+.rounded-circle {
+    height: 30px;
+}
+
+#dataTable {
+    margin-top: 70px;
+}
+
+.table {
+    padding: 20px;
+}
+
+.colDeskripsi {
+    width: 40vw;
+}
+
+.colNama {
+    width: 20vw;
+}
+
+.profile-img-about {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #22a6b3;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
