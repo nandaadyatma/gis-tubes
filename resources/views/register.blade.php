@@ -5,11 +5,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title> | {{ $title }}</title>
+  <title>RoadWatch | {{ $title }}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <link rel="shortcut icon" href="img/Trip Buddy.png" type="image/x-icon">
 
 
   <!-- Google Fonts -->
@@ -28,6 +27,8 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -41,7 +42,7 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                {{-- <img src="img/Trip Buddy.png" alt="Trip Buddy" style="height: 30px; margin-right: 10px;"> --}}
+                <img src="img/RoadWatch.png" alt="Roadwatch logo" style="height: 30px; margin-right: 10px;">
               <span class="d-none d-lg-block"><h4></h4></span>
               </div>
 
@@ -80,7 +81,7 @@
                     </div>
 
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Buat akun</button>
+                      <button class="btn btn-primary w-100" type="submit" id="register-button">Buat akun</button>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Kamu sudah punya akun? <a href="/login">Login</a></p>
@@ -110,8 +111,8 @@
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+
+  <script src="/js/register.js"></script>
 
 </body>
 

@@ -5,11 +5,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title> | {{ $title }}</title>
+  <title>Roadwatch | {{ $title }}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <link rel="shortcut icon" href="img/Trip Buddy.png" type="image/x-icon">
 
 
   <!-- Google Fonts -->
@@ -29,6 +28,8 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -42,8 +43,7 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                    {{-- <img src="img/Trip Buddy.png" alt="Trip Buddy" style="height: 30px; margin-right: 10px;"> --}}
-                  {{-- <span class="d-none d-lg-block"><h4>Trip Buddy</h4></span> --}}
+                    <img src="img/RoadWatch.png" alt="roadwatch logo" style="height: 30px; margin-right: 10px;">
               </div>
 
               <div class="card mb-3">
@@ -80,7 +80,7 @@
                       <button class="btn btn-primary w-100" type="submit" id="login-button">Login</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="/register">Create an account</a></p>
+                      <p class="small mb-0">Belum punya akun? <a href="/register">Buat akun</a></p>
                     </div>
                   </form>
 
@@ -112,6 +112,7 @@
 
   <!-- Template Main JS File -->
   <script src="js/app.js"></script>
+  <script src="js/login.js"></script>
 
 </body>
 

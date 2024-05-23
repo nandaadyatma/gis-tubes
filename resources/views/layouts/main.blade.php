@@ -4,16 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trip Buddy | {{ $title }}</title>
+    <title>Roadwatch | {{ $title }}</title>
 
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="shortcut icon" href="img/Trip Buddy.png" type="image/x-icon">
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-editable@1.2.0/dist/leaflet-editable.css" />
     <link rel="stylesheet" href="css/style.css">
+
+    
 </head>
 
 <body>
@@ -21,8 +23,7 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top">
         <div class="container-fluid ">
             <a class="navbar-brand" href="#">
-                {{-- <img src="img/Trip Buddy.png" alt="Trip Buddy" style="height: 30px; margin-right: 5px;"> --}}
-                <h5 style="display: inline">MyMap</h5>
+                <img src="img/Roadwatch.png" alt="Roadwatch logo" style="height: 25px; margin-bottom: 5px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,6 +63,11 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-database.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-editable@1.2.0/dist/leaflet-editable.js"></script>
+
+    {{-- encode--}}
+    <script src="https://cdn.jsdelivr.net/npm/polyline-encoded@1.0.1/dist/polyline-encoded.min.js"></script>
     
     @yield('js')
     

@@ -1,6 +1,4 @@
-$(document).ready(function() {
-    $('#login-form').on('submit', function() {
-      $('#login-button').prop('disabled', true);
-      $('#login-button').html('Logging in... <span class="loading-spinner"></span>');
-    });
-  });
+document.getElementById('login-button').addEventListener('click', function(){
+  document.getElementById("login-button").innerHTML = '<i class="fa fa-circle-o-notch fa-spin"></i>';
+  document.getElementById("login-button").style.opacity = '0.5'
+})

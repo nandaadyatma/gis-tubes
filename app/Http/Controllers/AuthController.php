@@ -25,6 +25,15 @@ class AuthController extends Controller
             'password' => $request->password,
         ]);
 
+        echo '<script type="text/JavaScript">  
+        document.getElementById("login-button").innerHTML = "Login";
+        document.getElementById("login-button").style.opacity = "1"
+        </script>';
+        
+      
+
+            
+
         if ($response->successful()) { //code 200
 
             if($response->json()['meta']['code'] == 200){
@@ -32,6 +41,14 @@ class AuthController extends Controller
                     'token' => $response->json()['meta']['token'],
 
             ]); 
+
+            $name =  $responseGetUser = Http::withToken(session('token'))->get('https://gisapis.manpits.xyz/api/user');
+                if($responseGetUser->successful()) {
+                    session([
+                        'name' => $responseGetUser->json()['data']['user']['name']
+                    ]);
+                }
+
 
             return redirect()->route('home');
             

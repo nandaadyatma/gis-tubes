@@ -44,20 +44,6 @@ Route::get('/posts', function () {
 });
 
 
-// Route::get('/login', function () {
-//     return view('login', [
-//         "title" => "Login",
-//         "name" => "Nanda Arya",
-//     ]);
-// });
-
-
-// Route::get('/register', function () {
-//     return view('register', [
-//         "title" => "Register",
-//     ]);
-// });
-
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 
 Route::post('login', [AuthController::class, 'login']);
