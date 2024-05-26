@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roadwatch | {{ $title }}</title>
 
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -42,7 +44,14 @@
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="img/profile-img.jpg" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block ps-2">{{ session('name') }}</span>
+                    <input type="hidden" id="hiddenField" value={{ session('token') }}>
+                    <script>
+                        var hiddenValue = document.getElementById('hiddenField').value;
+                        // console.log(hiddenValue);
+                    </script>
                 </a>
+
+                
 
                     <a href="/logout"><button class="btn btn-outline-primary ms-3">Logout</button></a>
 
@@ -50,6 +59,14 @@
             </div>
         </div>
     </nav>
+    <div class="alert-container">
+        @if(session('info'))
+            <div id="alert" class="alert alert-success" role="alert">
+                {{ session('info') }}
+            </div>
+        @endif
+
+    </div>
     <div class="main-container">
         @yield('main-content')
     </div>

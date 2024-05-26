@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoadController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,4 +55,6 @@ Route::get('register', [AuthController::class, 'showRegisterForm'])->name('regis
 Route::post('register', [AuthController::class, 'register']);
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::post('/createNewRoad', [RoadController::class, 'createNewRoad'])->name('createNewRoad');
 

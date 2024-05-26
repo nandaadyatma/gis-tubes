@@ -2,7 +2,7 @@ body, html {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100vh-);
 }
 
 .navbar {
@@ -15,36 +15,78 @@ body, html {
 
 .main-content {
     display: flex;
-    height: calc(100% - 40px); /* Adjust based on navbar height */
+    height: calc(100% - 36px); /* Adjust based on navbar height */
 }
 
 #map {
-    margin-top: 60px;
-    flex-grow: 1;
-    background-color: #ddd;
-    position: relative;
+    position: absolute;
+    right: 0px;
+    margin-top: 63px;
+    height: calc(100vh - 36px);
+    width: 100%;
+    transition: right 0.3s;
 }
 
-.sidebar {
-    padding-top: 80px;
-    width: 0%;
-    height: 100vh;
-    background-color: #ffffff;
-    position: relative; /* For the close button */
+#map.slide {
+    position: absolute;
+    right: 225px;
+    margin-top: 63px;
+    height: calc(100vh - 36px);
+    width: 100%;
+}
+
+
+
+#sidebar {
+    position: absolute;
+    top: 63px;
+    right: -450px; /* Hide the sidebar initially */
+    width: 450px;
+    height: calc(100vh - 36px);
+    background: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.082);
+    transition: right 0.3s;
+    z-index: 1000;
     overflow: scroll;
 }
-
-#sidebar, #map {
-    transition: width 0.5s ease, padding 0.5s ease; /* Menambahkan transisi dengan durasi 0.5 detik */
-  }
-
-.close-btn {
+#sidebar.show {
+    right: 0;
+}
+#toggleSidebarBtn {
     position: absolute;
-    top: 0px;
-    right: 0px;
-    z-index: 200;
-    overflow: visible;
-    cursor: pointer;
+    top: 50vh;
+    right: -5px; /* Move button to the left of the sidebar */
+    transition: right 0.3s;
+    z-index: 999;
+}
+
+#polylineMenu {
+    position: absolute;
+    visibility: hidden;
+    padding: 10px;
+    bottom: 10px;
+    right: 20px;
+    z-index: 998;
+    transition: right 0.3s;
+}
+
+#polylineMenu.show {
+    padding: 10px;
+    position: absolute;
+    bottom: 10px;
+    right: 460px;
+    z-index: 998;
+
+}
+
+
+
+#toggleSidebarBtn.show {
+    right: 445px;
+}
+
+.form-group {
+    padding-bottom: 10px;
 }
 
 .rounded-circle {
@@ -85,6 +127,14 @@ body, html {
     display: inline-block;
     vertical-align: middle;
     margin-left: 5px;
+}
+
+.alert-container {
+    padding: 10px;
+    position: absolute;
+    top: 70px;
+    left: 25%;
+    z-index: 997;
 }
 
 @keyframes spin {
