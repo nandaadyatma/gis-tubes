@@ -1,5 +1,5 @@
 // LEAFLET.JS
-var map = L.map("map", {}).setView([-8.621213, 115.086804], 11);
+var map = L.map("map", {})
 
 let currentSelectedLocation = null
 
@@ -9,6 +9,7 @@ let roadDistanceMarker = [];
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19, //max zoom
+  minZoom: 10,
   attribution:
     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>', //copyright
 }).addTo(map);
@@ -69,7 +70,12 @@ navigator.geolocation.getCurrentPosition(position => {
 
   var path = [];
 
-  map.setView([latitude, longitude], 10);
+  if(!latitude || !longitude){
+    map.setView([ -8.52670, 115.26718], 12);
+  } else {
+    map.setView([latitude, longitude], 12);
+  }
+
 
   marker.bindPopup("Posisi kamu").openPopup();
   console.log(marker);
