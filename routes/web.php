@@ -58,3 +58,19 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/createNewRoad', [RoadController::class, 'createNewRoad'])->name('createNewRoad');
 
+// Route::get('/detail', [RoadController::class, 'detail'])->name('detail');
+
+Route::get('/detail', function () {
+    return view('about', [
+        "title" => "Detail",
+    ]);
+});
+
+
+Route::get('/test', function () {
+    return view('test',[
+        "title" => "About",
+        "name" => "Nanda Arya",
+    ]);
+});
+

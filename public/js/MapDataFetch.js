@@ -1,11 +1,35 @@
 var polylineRoadData = []
+// var roadDataFetching = []
+
+// getRoadData();
+
+// function getRoadData(){
+//     axios.get('https://gisapis.manpits.xyz/api/ruasjalan', {headers: {
+//     'Authorization': `Bearer ${token}`
+//     }
+//     }).then(response => {
+//         // console.log(response.data.ruasjalan);
+//         let data = response.data.ruasjalan;
+//         data.forEach(data => {
+            
+//             roadDataFetching.push(data)
+            
+//         });
+//     })
+// }
 
 function drawRoadData(lineWidth){
     // reset polyline
+   
+
     polylineRoadData.forEach( line => {
         map.removeLayer(line);
         console.log("reseted")
     })
+
+    console.log(polylineRoadData);
+
+    polylineRoadData = [];
 
     axios.get('https://gisapis.manpits.xyz/api/ruasjalan', {headers: {
     'Authorization': `Bearer ${token}`
@@ -25,6 +49,12 @@ function drawRoadData(lineWidth){
                     break;
                     case 2:{
                         drawLine(color1 = '#FFBD13', color2 = '#7B6000', width = lineWidth, data = data, decodedData = decodedData )
+                    }
+
+                    break;
+
+                    case 3:{
+                        drawLine(color1 = '#F93844', color2 = '#7B6000', width = lineWidth, data = data, decodedData = decodedData )
                     }
                         
                         break;
@@ -54,7 +84,7 @@ function drawLine(color1, color2, width, data, decodedData){
     var popupContent2 = `
     <table>
         <tr>
-            <th>Data ruas jalan</th>
+            <th><h6><b>Data ruas jalan</b></h6></th>
         </tr>
         <tr>
             <td>Nama ruas</td>
@@ -80,9 +110,20 @@ function drawLine(color1, color2, width, data, decodedData){
             <td>Kondisi jalan</td>
             <td>${getKondisiJalanById(data.kondisi_id)}</td>
         </tr>
-    </table>`
+    </table>
+    <hr>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary flex-end" id="detailDataButton" action="">Detail & Edit</i></button>
+    </div>
+    `
+
     
-    mainPolyline.bindPopup(popupContent2)
+    mainPolyline.bindPopup(popupContent2).on('popupopen', function(){
+        document.getElementById('detailDataButton').addEventListener('click', function() {
+                window.location.href = `/detail`;
+
+        })
+    })
     
 
     polylineRoadData.push(outlinePolyline)

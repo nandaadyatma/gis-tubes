@@ -50,4 +50,11 @@ class RoadController extends Controller
         }
         
     }
+
+    public function detail(){
+        return view('detail', [
+            "title" => "Road Detail "
+        ]);
+
+    }
 }
