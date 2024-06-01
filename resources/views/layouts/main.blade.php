@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top">
         <div class="container-fluid ">
             <a class="navbar-brand" href="#">
-                <img src="img/Roadwatch.png" alt="Roadwatch logo" style="height: 25px; margin-bottom: 5px;">
+                <img src="img/Roadwatch.png" alt="RoadWatch logo" style="height: 25px; margin-bottom: 5px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,6 +38,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ ($title === "About") ? 'active' : '' }}" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ ($title === "Data") ? 'active' : '' }}" href="/data">Data</a>
                     </li>
                 </ul>
 

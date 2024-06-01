@@ -45,6 +45,8 @@ Route::get('/posts', function () {
     ]);
 });
 
+Route::delete('/road-data/{id}', [RoadController::class, 'deleteData'])->name('roadData.delete');
+
 
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 
@@ -58,10 +60,12 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/createNewRoad', [RoadController::class, 'createNewRoad'])->name('createNewRoad');
 
+Route::get('/data',[RoadController::class, 'getRoadData']);
+
 // Route::get('/detail', [RoadController::class, 'detail'])->name('detail');
 
 Route::get('/detail', function () {
-    return view('about', [
+    return view('detail', [
         "title" => "Detail",
     ]);
 });

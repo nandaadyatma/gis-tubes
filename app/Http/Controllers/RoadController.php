@@ -11,18 +11,18 @@ class RoadController extends Controller
 {
     public function createNewRoad(Request $request)
     {
-        $data = [
-            "paths" => "`pcs@uqr~T4}BJ}@",
-            "desa_id"=> 473,
-            "kode_ruas"=> "R1",
-            "nama_ruas"=> "10-12",
-            "panjang"=> "1093",
-            "lebar" => "3",
-            "eksisting_id"=> 2,
-            "kondisi_id"=> 2,
-            "jenisjalan_id"=> 1,
-            "keterangan"=> "keterangan Jalan"
-        ];
+        // $data = [
+        //     "paths" => "`pcs@uqr~T4}BJ}@",
+        //     "desa_id"=> 473,
+        //     "kode_ruas"=> "R1",
+        //     "nama_ruas"=> "10-12",
+        //     "panjang"=> "1093",
+        //     "lebar" => "3",
+        //     "eksisting_id"=> 2,
+        //     "kondisi_id"=> 2,
+        //     "jenisjalan_id"=> 1,
+        //     "keterangan"=> "keterangan Jalan"
+        // ];
 
         if(session('token')){
             $response = Http::withHeaders([
@@ -56,5 +56,42 @@ class RoadController extends Controller
             "title" => "Road Detail "
         ]);
 
+    }
+
+    public function getRoadData(){
+        if(session('token')){
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . session('token'),
+                'Content-Type' => 'application/json'
+            ])->get('https://gisapis.manpits.xyz/api/ruasjalan');
+
+            if($response->successful()){
+                // dd($response->json());
+                $data = $response->json()["ruasjalan"];
+                // dd($data);
+
+                return view('data',[
+                    'roadData' => $data,
+                    'title' => "Data",
+                ]);
+            }
+        }
+    }
+
+    public function deleteData($id) {
+        if(session('token')){
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . session('token'),
+                'Content-Type' => 'application/json'
+            ])->delete('https://gisapis.manpits.xyz/api/ruasjalan/' .$id);
+
+            if($response->successful()){
+                // dd($response->json());
+                // $data = $response->json()["ruasjalan"];
+                // // dd($data);
+
+                return back();
+            }
+        }
     }
 }

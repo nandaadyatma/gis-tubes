@@ -20,28 +20,19 @@ body, html {
 
 #map {
     position: absolute;
-    right: 0px;
-    margin-top: 63px;
+    top: 63px;
+    width: 60vw;
     height: calc(100vh - 36px);
-    width: 100%;
-    transition: right 0.3s;
 }
 
-#map.slide {
-    position: absolute;
-    right: 225px;
-    margin-top: 63px;
-    height: calc(100vh - 36px);
-    width: 100%;
-}
 
 
 
 #sidebar {
     position: absolute;
     top: 63px;
-    right: -450px; /* Hide the sidebar initially */
-    width: 450px;
+    right: 0px; /* Hide the sidebar initially */
+    width: 40vw;
     height: calc(100vh - 36px);
     background: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.082);
@@ -49,9 +40,7 @@ body, html {
     z-index: 1000;
     overflow: scroll;
 }
-#sidebar.show {
-    right: 0;
-}
+
 #toggleSidebarBtn {
     position: absolute;
     top: 50vh;
@@ -86,7 +75,7 @@ body, html {
 }
 
 .form-group {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .rounded-circle {
@@ -137,34 +126,6 @@ body, html {
     z-index: 997;
 }
 
-.table-rounded {
-    border-collapse: separate;
-    border-spacing: 0;
-    border: 1px solid #dee2e6;
-    border-radius: .25rem;
-    overflow: hidden;
-}
-
-.table-rounded th,
-.table-rounded td {
-    border: 1px solid #dee2e6;
-}
-
-.table-rounded thead th:first-child {
-    border-top-left-radius: .25rem;
-}
-
-.table-rounded thead th:last-child {
-    border-top-right-radius: .25rem;
-}
-
-.table-rounded tbody tr:last-child td:first-child {
-    border-bottom-left-radius: .25rem;
-}
-
-.table-rounded tbody tr:last-child td:last-child {
-    border-bottom-right-radius: .25rem;
-}
 
 @keyframes spin {
     0% {
