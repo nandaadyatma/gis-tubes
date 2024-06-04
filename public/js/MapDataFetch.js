@@ -120,7 +120,7 @@ function drawLine(color1, color2, width, data, decodedData){
     
     mainPolyline.bindPopup(popupContent2).on('popupopen', function(){
         document.getElementById('detailDataButton').addEventListener('click', function() {
-                window.location.href = `/detail`;
+                window.location.href = `/detail/${data.id}`;
 
         })
     })

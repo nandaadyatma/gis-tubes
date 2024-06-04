@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadwatch | {{ $title }} - {{ $id }}</title>
+    <title>Roadwatch | {{ $title }}</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.png') }}">
 
@@ -22,7 +22,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top">
         <div class="container-fluid ">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="#">
                 <img src="{{ asset('img/RoadWatch.png') }}" alt="RoadWatch logo" style="height: 25px; margin-bottom: 5px;">
             </a>
 
@@ -31,7 +31,6 @@
                     <img src="{{ asset('img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block ps-2">{{ session('name') }}</span>
                     <input type="hidden" id="hiddenField" value={{ session('token') }}>
-                    <input type="hidden" id="roadId" value={{ $id }}>
                     <script>
                         var hiddenValue = document.getElementById('hiddenField').value;
                         // console.log(hiddenValue);
@@ -63,7 +62,7 @@
                     <div class="p-3">
                         <h4>Data Ruas Jalan</h4>
                    
-                        <form>
+                        <form method="POST" action="{{ route('createNewRoad') }}">
                             @csrf
                             <div class="row">
                                 <div class="col-sm">
@@ -151,13 +150,11 @@
                                 <label for="additionalInformation">Keterangan</label>
                                 <input type="text" name="additionalInformation" class="form-control" id="additionalInformation" placeholder="Keterangan">
                             </div>
-                            
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-danger flex-end mx-3" id="addDataButton">Hapus Data</button>
+                                <button type="submit" class="btn btn-primary flex-end" id="addDataButton">Perbarui Data</button>
+                            </div>
                         </form>
-                        <div class="d-flex justify-content-end">
-                            <button id="deleteRoadButton" class="btn btn-outline-danger mx-3"><i class="bi bi-trash"></i> Hapus Data</button>
-                            
-                            <button type="submit" class="btn btn-primary flex-end" id="addDataButton">Perbarui Data</button>
-                        </div>
                     </div>
         
                 </div>
@@ -187,8 +184,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     
-    <script src="{{ asset('js/formDataFetch.js') }}"></script>
     <script src="{{ asset('js/detail.js') }}"></script>
+    <script src="{{ asset('js/formDataFetch.js') }}"></script>
 
 
 </body>

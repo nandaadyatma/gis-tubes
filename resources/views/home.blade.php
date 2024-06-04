@@ -86,6 +86,7 @@
         <button id="toggleSidebarBtn" class="btn btn-primary"><i class="bi bi-chevron-left"></i></button>
 
         <div class="card" id="polylineMenu">
+            <h6 id="pointNumber"></h6>
               <button id="deletePoint" class="btn btn-outline-danger "><i class="bi bi-backspace"> Delete point</i> </button>
           </div>
         

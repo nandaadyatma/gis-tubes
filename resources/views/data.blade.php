@@ -30,7 +30,7 @@
                         @foreach($roadData as $item)
                             <tr>
                                 <td class="text-center">{{ $count }}</td>
-                                <td>{{ $item['id'] }}</td>
+                                <td id="id">{{ $item['id'] }}</td>
                                 <td>{{ $item['kode_ruas'] }}</td>
                                 <td>{{ $item['nama_ruas'] }}</td>
                                 <td>{{ $item['panjang'] }}</td>
@@ -38,13 +38,18 @@
                                 <td>{{ $item['eksisting_id'] }}</td>
                                 <td>{{ $item['kondisi_id'] }}</td>
                                 <td>{{ $item['jenisjalan_id'] }}</td>
-                                <td  class="text-center">
-                                    <form action="{{ route('roadData.delete', $item['id']) }}" method="POST" onsubmit="return confirm('Yakin mau hapus ini?')";>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" id="deleteRoadButton" class="btn btn-outline-danger">Delete</button>
-                                    <button id="editRoadButton" class="btn btn-outline-primary">Edit</button>
-                                    </form>
+                                <td  class="text-center d-flex justify-content-center">
+    
+  
+                                            <form action="{{ route('roadData.delete', $item['id']) }}" method="POST" onsubmit="return confirm('Yakin mau hapus ini?')";>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" id="deleteRoadButton" class="btn btn-outline-danger me-2">Hapus</button>
+                                                </form>
+
+
+                                            <button id="detailDataButton" class="btn btn-outline-primary detailDataButton" data-id="{{ $item['id'] }}">Edit</button>
+
                                 </td>
                                 <!-- Add more columns as needed -->
                             </tr>
@@ -69,4 +74,5 @@
 
 <script src="js/app.js"></script>
 <script src="js/MapDataFetch.js"></script>
+<script src="js/data.js"></script>
 @endsection

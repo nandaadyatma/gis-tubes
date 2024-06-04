@@ -21,6 +21,7 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 let isSideBarOpen = false
 
+var pointNumberElement = document.getElementById('pointNumber');
 
 
 
@@ -122,7 +123,7 @@ navigator.geolocation.getCurrentPosition(position => {
               
                     
 
-              marker.bindPopup(customPopup).openPopup();
+              marker.bindPopup(customPopup);
 
               
 
@@ -153,6 +154,8 @@ navigator.geolocation.getCurrentPosition(position => {
             updatePolyline();
 
             document.getElementById('polylineMenu').style.visibility = "visible";
+
+            
 
             
         }
@@ -198,6 +201,8 @@ navigator.geolocation.getCurrentPosition(position => {
             // insert realtime selected distance road data
             let roadDistanceData = getDistanceBetweenMarkers(getLatLngArrayFromMarkers(markers)).toFixed(1)
             document.getElementById('roadDistance').value = roadDistanceData;
+
+            pointNumberElement.innerHTML = `Total point: ${markers.length}`
         }
 
         var roadWidthInput = document.getElementById('roadWidth');

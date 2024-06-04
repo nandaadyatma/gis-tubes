@@ -64,11 +64,13 @@ Route::get('/data',[RoadController::class, 'getRoadData']);
 
 // Route::get('/detail', [RoadController::class, 'detail'])->name('detail');
 
-Route::get('/detail', function () {
-    return view('detail', [
-        "title" => "Detail",
-    ]);
-});
+Route::get('/detail/{id}', function ($id) {
+        return view('detail', [
+            "title" => "Detail",
+            "id" => $id
+        ]);
+    });
+    
 
 
 Route::get('/test', function () {
