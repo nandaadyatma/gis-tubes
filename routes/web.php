@@ -18,7 +18,7 @@ use App\Http\Controllers\RoadController;
 
 Route::get('/', function () {
     if (!session()->has('token')){
-        return redirect()->route('login');
+        return redirect()->route('welcome');
     }
 
     return view('home',[
@@ -61,6 +61,10 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/createNewRoad', [RoadController::class, 'createNewRoad'])->name('createNewRoad');
 
 Route::get('/data',[RoadController::class, 'getRoadData']);
+
+Route::get('/welcome', function(){
+    return view('welcome');
+})->name('welcome');
 
 // Route::get('/detail', [RoadController::class, 'detail'])->name('detail');
 

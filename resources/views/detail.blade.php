@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-editable@1.2.0/dist/leaflet-editable.css" />
     <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 
-    
 </head>
 
 <body>
@@ -108,13 +107,13 @@
                                 </div>
                                 <div class="col-sm">
                                     <div class="form-group">
-                                        <label for="roadDistance">Panjang jalan (meter)</label>
+                                        <label for="roadDistance">Panjang jalan (m)</label>
                                         <input type="text" name="roadDistance" class="form-control" id="roadDistance" placeholder="panjang jalan">
                                     </div> 
                                 </div>
                                 <div class="col-sm">
                                     <div class="form-group">
-                                        <label for="roadWidth">Lebar jalan (meter)</label>
+                                        <label for="roadWidth">Lebar jalan (m)</label>
                                         <input type="text" name="roadWidth" class="form-control" id="roadWidth" placeholder="lebar jalan">
                                     </div>
                                 </div>
@@ -156,7 +155,7 @@
                         <div class="d-flex justify-content-end">
                             <button id="deleteRoadButton" class="btn btn-outline-danger mx-3"><i class="bi bi-trash"></i> Hapus Data</button>
                             
-                            <button type="submit" class="btn btn-primary flex-end" id="addDataButton">Perbarui Data</button>
+                            <button class="btn btn-primary flex-end" id="editDataButton">Perbarui Data</button>
                         </div>
                     </div>
         
@@ -189,6 +188,7 @@
     
     <script src="{{ asset('js/formDataFetch.js') }}"></script>
     <script src="{{ asset('js/detail.js') }}"></script>
+    
 
 
 </body>

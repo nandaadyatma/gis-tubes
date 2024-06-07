@@ -30,6 +30,8 @@ let roadId = document.getElementById('roadId').value;
 var deleteButton = document.getElementById('deleteRoadButton')
 
 
+
+
 function getDetailDataById(id) {
   axios.get('https://gisapis.manpits.xyz/api/ruasjalan/' + id, {
     headers: {
@@ -138,6 +140,61 @@ deleteButton.addEventListener('click', function () {
 
 })
 
+function editRoadDataById(id) {
+  let encodePath = document.getElementById('hiddenEncodePath').value;
+  let desa_id = document.getElementById('village').value;
+  let kode_ruas = document.getElementById('roadCode').value;
+  let nama_ruas = document.getElementById('roadName').value;
+  let panjang = document.getElementById('roadDistance').value;
+  let lebar = document.getElementById('roadWidth').value;
+  let eksisting_id = document.getElementById('existingPavement').value;
+  let kondisi_id = document.getElementById('roadCondition').value;
+  let jenisjalan_id = document.getElementById('roadType').value;
+  let keterangan = document.getElementById('additionalInformation').value;
+
+  if (encodePath && desa_id && kode_ruas && nama_ruas && panjang && lebar && eksisting_id && kondisi_id && jenisjalan_id && keterangan) {
+    data = {
+      paths: encodePath,
+      desa_id: desa_id,
+      kode_ruas: kode_ruas,
+      nama_ruas: nama_ruas,
+      panjang: panjang,
+      lebar: lebar,
+      eksisting_id: eksisting_id,
+      kondisi_id: kondisi_id,
+      jenisjalan_id: jenisjalan_id,
+      keterangan: keterangan
+
+      
+    };
+
+    console.log(data);
+    axios.put('https://gisapis.manpits.xyz/api/ruasjalan/' + id, data, {
+      headers: {
+        'Authorization': `Bearer ${token2}`
+      }
+    }).then( response => {
+
+      console.log(response);
+
+    }).catch(error => { console.log(error)})
+    
+ 
+  } else {
+    
+    alert("Pastikan semua data terisi sebelum perbarui data")
+  }
+
+
+
+ 
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('editDataButton').addEventListener('click', function () {
+    editRoadDataById(roadId)
+  })
+})
 
 
 
@@ -305,7 +362,7 @@ function updatePolyline() {
   let roadDistanceData = getDistanceBetweenMarkers(getLatLngArrayFromMarkers(markers)).toFixed(1)
   document.getElementById('roadDistance').value = roadDistanceData;
 
-  
+
 }
 
 var roadWidthInput = document.getElementById('roadWidth');
