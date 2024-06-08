@@ -42,7 +42,7 @@ class RoadController extends Controller
             ]);
     
             if ($response->successful()) {
-                return back()->with('info',"Success Create Data"); //flash session
+                return back()->with('success-add-road',"Success Create Data"); //flash session
             //    return response()->json(['data' => $response->json()]);
             } else {
                 // return response()->json(['data' => $response->json()]);

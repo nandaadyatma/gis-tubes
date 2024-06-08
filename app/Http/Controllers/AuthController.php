@@ -50,7 +50,7 @@ class AuthController extends Controller
                 }
 
 
-            return redirect()->route('home');
+            return redirect()->route('home')->with('success-login',"Success Create Data");
             
             } else {
                 $errorCode = json_decode($response->body(), true)['meta']['code'];
@@ -111,6 +111,6 @@ class AuthController extends Controller
     {
         Auth::logout();
         $request->session()->flush();
-        return redirect()->route('login');
+        return redirect()->route('welcome');
     }
 }
