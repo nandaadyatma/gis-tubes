@@ -90,7 +90,7 @@ class RoadController extends Controller
                 // $data = $response->json()["ruasjalan"];
                 // // dd($data);
 
-                return back();
+                return back()->with('success-delete-road',"Success Delete Data");
             }
         }
     }

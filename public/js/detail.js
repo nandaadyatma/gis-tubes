@@ -165,7 +165,7 @@ function editRoadDataById(id) {
       jenisjalan_id: jenisjalan_id,
       keterangan: keterangan
 
-      
+
     };
 
     console.log(data);
@@ -173,21 +173,51 @@ function editRoadDataById(id) {
       headers: {
         'Authorization': `Bearer ${token2}`
       }
-    }).then( response => {
+    }).then(response => {
 
       console.log(response);
 
-    }).catch(error => { console.log(error)})
-    
- 
+    }).catch(error => { console.log(error) })
+
+
   } else {
-    
-    alert("Pastikan semua data terisi sebelum perbarui data")
+
+    function isEmpty(val) {
+      return (val === undefined || val == null || val.length <= 0) ? true : false;
+    }
+
+    var error = []
+    var message = ""
+
+    if (isEmpty(lebar)) {
+      error.push("lebar jalan")
+    }
+    if (isEmpty(kode_ruas)) {
+      error.push("kode ruas")
+    }
+    if (isEmpty(jenisjalan_id)) {
+      error.push("jenis jalan")
+    }
+    if (isEmpty(kondisi_id)) {
+      error.push("kondisi jalan")
+    }
+    if (isEmpty(eksisting_id)) {
+      error.push("perkerasan")
+    }
+
+    error.forEach(element => {
+      message += `${element}, `
+
+    });
+
+
+
+    alert(`Pastikan data ${message}terisi`)
   }
 
 
 
- 
+
 }
 
 document.addEventListener('DOMContentLoaded', function () {

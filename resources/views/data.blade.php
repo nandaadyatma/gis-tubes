@@ -7,8 +7,63 @@
         <br>
         <div class="card-body">
                 <div class="card-header">
-                    <h4>Data Ruas Jalan</h4>
+                    <h1>Data Ruas Jalan</h1>
                 </div>
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="card text-white bg-danger mb-3">
+                                <div class="card-header"><i class="bi bi-1-circle"></i> Jalan kondisi rusak</div>
+                                <div class="card-body">
+                                    @php
+                                    $jumlahJalanRusak = 0;
+                                    foreach ($roadData as $data) {
+                                        if ($data['kondisi_id'] == 3) {
+                                            $jumlahJalanRusak += 1;
+                                        }
+                                    }
+                                    @endphp
+                                    <h1 class="card-title">{{ $jumlahJalanRusak }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card text-white bg-warning mb-3">
+                                <div class="card-header"><i class="bi bi-2-circle"></i> Jalan kondisi sedang</div>
+                                <div class="card-body">
+                                    @php
+                                    $jumlahJalanSedang = 0;
+                                    foreach ($roadData as $data) {
+                                        if ($data['kondisi_id'] == 2) {
+                                            $jumlahJalanSedang += 1;
+                                        }
+                                    }
+                                    @endphp
+                                    <h1 class="card-title">{{ $jumlahJalanSedang }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card text-white bg-success mb-3">
+                                <div class="card-header"><i class="bi bi-3-circle"></i> Jalan kondisi baik</div>
+                                <div class="card-body">
+                                    @php
+                                    $jumlahJalanBaik = 0;
+                                    foreach ($roadData as $data) {
+                                        if ($data['kondisi_id'] == 1) {
+                                            $jumlahJalanBaik += 1;
+                                        }
+                                    }
+                                    @endphp
+                                    <h1 class="card-title">{{ $jumlahJalanBaik }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  
+
+                <br>
                 <table class="table table-rounded">
                     <thead>
                         <tr>
@@ -59,7 +114,28 @@
                 </table>
             </div>
     </div>
- 
+    
+    @if(session('success-delete-road'))
+    <div class="modal-dialog" id="modal-dialog">
+        <div class="card" id="card-dialog">
+            <div class="card-body">
+                <h5 class="card-title text-center">Hapus Jalan Berhasil</h5>
+                <p class="card-text text-center">Silahkan cek kembali datamu!</p>
+
+                <div class="lottie text-center">
+                    <img src="{{ asset('img/success.gif') }}" alt="">
+                    
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-outline-primary" style="width: 18rem">
+                        Oke
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
    
 </div>
 
@@ -75,4 +151,5 @@
 <script src="js/app.js"></script>
 <script src="js/MapDataFetch.js"></script>
 <script src="js/data.js"></script>
+<script src="js/modal.js"></script>
 @endsection
