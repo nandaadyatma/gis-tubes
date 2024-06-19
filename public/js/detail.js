@@ -79,11 +79,293 @@ function getDetailDataById(id) {
     var nama = document.getElementById('roadName');
     var kode = document.getElementById('roadCode');
     var kondisi = document.getElementById('roadCondition');
+    var lebar = document.getElementById('roadWidth')
+    var idDesa = document.querySelector('#vilageId');
 
     keterangan.value = roadData[0].keterangan;
     nama.value = roadData[0].nama_ruas;
     kode.value = roadData[0].kode_ruas;
     kondisi.value = roadData[0].kondisi_id;
+    lebar.value = roadData[0].lebar;
+    idDesa.value = roadData[0].desa_id;
+
+    function setDefaultVillageDistrictCity() {
+
+      let villageId = roadData[0].desa_id;
+
+      axios.get(`https://gisapis.manpits.xyz/api/kecamatanbydesaid/${villageId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }).then(response => {
+
+        var data = response.data
+        console.log(data)
+
+        // const citySelect = document.getElementById('city');
+        // const districtSelect = document.getElementById('district');
+        // const villageSelect = document.getElementById('village');
+        // citySelect.innerHTML = `<option value="${data.kabupaten.id}">${data.kabupaten.kabupaten}</option>`;
+        // districtSelect.innerHTML = `<option value="${data.desa.id}">${data.desa.desa}</option>`;
+        // villageSelect.innerHTML = `<option value="${data.kecamatan.id}">${data.kecamatan.kecamatan}</option>`;
+
+        // Fetch initial city data
+        axios.get(`https://gisapis.manpits.xyz/api/kabupaten/1`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+          .then(response => {
+            console.log(response.data.kabupaten);
+            const cities = response.data;
+            const citySelect = document.getElementById('city');
+
+            citySelect.innerHTML = `<option value="${data.kabupaten.id}">${data.kabupaten.kabupaten}</option>`;
+
+            response.data.kabupaten.forEach(city => {
+              const option = document.createElement('option');
+              option.value = city.id;
+              option.text = city.value;
+              citySelect.appendChild(option);
+            });
+          })
+          .catch(error => console.error('Error fetching cities:', error));
+
+        // Fetch Default Kecamatan
+
+        const cityId = data.kabupaten.id;
+        const districtId = data.kecamatan.id;
+        const districtSelect = document.getElementById('district');
+
+
+        districtSelect.innerHTML = `<option value="${data.kecamatan.id}">${toCapitalized(data.kecamatan.kecamatan)}</option>`;
+
+
+        if (cityId) {
+          axios.get(`https://gisapis.manpits.xyz/api/kecamatan/${cityId}`, {
+            headers: {
+              'Authorization': `Bearer ${token2}`
+            }
+          })
+            .then(response => {
+              console.log(response.data.kecamatan);
+              const districts = response.data.kecamatan;
+              districts.forEach(district => {
+                const option = document.createElement('option');
+                option.value = district.id;
+                option.text = toCapitalized(district.value);
+                districtSelect.appendChild(option);
+              });
+
+
+            })
+            .catch(error => console.error('Error fetching districts:', error));
+        }
+
+        //Fetch Default village
+
+        const villageSelect = document.getElementById('village');
+        villageSelect.innerHTML = `<option value="${data.kecamatan.id}">${toCapitalized(data.kecamatan.kecamatan)}</option>`;
+
+        if (villageId) {
+          axios.get(`https://gisapis.manpits.xyz/api/desa/${districtId}`, {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          })
+            .then(response => {
+              const villages = response.data.desa;
+              villages.forEach(village => {
+                const option = document.createElement('option');
+                option.value = village.id;
+                option.text = toCapitalized(village.value);
+                villageSelect.appendChild(option);
+              });
+            })
+            .catch(error => console.error('Error fetching villages:', error));
+        }
+
+
+
+
+
+
+
+        // Fetch districts when city changes
+        document.getElementById('city').addEventListener('change', function () {
+          const cityId = this.value;
+          const districtSelect = document.getElementById('district');
+          const villageSelect = document.getElementById('village');
+          districtSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+          villageSelect.innerHTML = '<option value="">Pilih Desa</option>';
+
+          if (cityId) {
+            axios.get(`https://gisapis.manpits.xyz/api/kecamatan/${cityId}`, {
+              headers: {
+                'Authorization': `Bearer ${token2}`
+              }
+            })
+              .then(response => {
+                console.log(response.data.kecamatan);
+                const districts = response.data.kecamatan;
+                districts.forEach(district => {
+                  const option = document.createElement('option');
+                  option.value = district.id;
+                  option.text = toCapitalized(district.value);
+                  districtSelect.appendChild(option);
+                });
+              })
+              .catch(error => console.error('Error fetching districts:', error));
+          }
+        });
+
+        // Fetch villages when district changes
+        document.getElementById('district').addEventListener('change', function () {
+          const districtId = this.value;
+          const villageSelect = document.getElementById('village');
+          villageSelect.innerHTML = '<option value="">Pilih Desa</option>';
+
+          if (districtId) {
+            axios.get(`https://gisapis.manpits.xyz/api/desa/${districtId}`, {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            })
+              .then(response => {
+                const villages = response.data.desa;
+                villages.forEach(village => {
+                  const option = document.createElement('option');
+                  option.value = village.id;
+                  option.text = toCapitalized(village.value);
+                  villageSelect.appendChild(option);
+                });
+              })
+              .catch(error => console.error('Error fetching villages:', error));
+          }
+        });
+
+        document.getElementById('village').addEventListener('change', function () {
+          console.log(this.value);
+        })
+
+      })
+
+
+
+      // existingType
+      axios.get(`https://gisapis.manpits.xyz/api/meksisting`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then(response => {
+          console.log(response.data.eksisting);
+          const existing = response.data.eksisting;
+          const existingSelect = document.getElementById('existingPavement');
+
+          existingSelect.innerHTML = `<option value="${roadData[0].eksisting_id}">${roadData[0].eksisting_id}</option>`;
+          existing.forEach(existing => {
+            const option = document.createElement('option');
+            option.value = existing.id;
+            option.text = existing.eksisting;
+            existingSelect.appendChild(option);
+          });
+        })
+        .catch(error => console.error('Error fetching cities:', error));
+
+      // roadCondition
+      axios.get(`https://gisapis.manpits.xyz/api/mkondisi`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then(response => {
+          console.log(response.data.eksisting);
+          const existing = response.data.eksisting;
+          const conditionSelect = document.getElementById('roadCondition');
+
+          var kondisiJalan = "";
+
+          switch (roadData[0].jenisjalan_id) {
+            case 1:
+              kondisiJalan = "Baik";
+              break;
+
+            case 2:
+              kondisiJalan = "Sedang"
+              break;
+
+            case 3:
+              kondisiJalan = "Rusak"
+              break;
+
+            default:
+              kondisiJalan = "-"
+              break;
+          }
+
+          conditionSelect.innerHTML = `<option value="${roadData[0].kondisi_id}">${kondisiJalan}</option>`;
+
+
+          existing.forEach(condition => {
+            const option = document.createElement('option');
+            option.value = condition.id;
+            option.text = condition.kondisi;
+            conditionSelect.appendChild(option);
+          });
+        })
+        .catch(error => console.error('Error fetching cities:', error));
+
+
+      // roadType
+      axios.get(`https://gisapis.manpits.xyz/api/mjenisjalan`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then(response => {
+          console.log(response.data.eksisting);
+          const existing = response.data.eksisting;
+          const typeSelect = document.getElementById('roadType');
+
+          var jenisjalan = ''
+
+          switch (roadData[0].jenisjalan_id) {
+            case 1:
+              jenisjalan = "Desa";
+              break;
+
+            case 2:
+              jenisjalan = "Kabupaten"
+              break;
+
+            case 3:
+              jenisjalan = "Provinsi"
+              break;
+
+            default:
+              jenisjalan = "-"
+              break;
+          }
+
+          typeSelect.innerHTML = `<option value="${roadData[0].jenisjalan_id}">${jenisjalan}</option>`;
+
+
+          existing.forEach(type => {
+            const option = document.createElement('option');
+            option.value = type.id;
+            option.text = type.jenisjalan;
+            typeSelect.appendChild(option);
+          });
+        })
+        .catch(error => console.error('Error fetching cities:', error));
+
+
+
+
+    }
+
+    setDefaultVillageDistrictCity();
 
 
 
@@ -176,6 +458,13 @@ function editRoadDataById(id) {
     }).then(response => {
 
       console.log(response);
+      // alert("Mantap data diperbarui");
+
+      const modalDialog = document.querySelector('#modal-dialog');
+      modalDialog.style.visibility = 'visible';
+      setTimeout(() => {
+        modalDialog.style.visibility = 'hidden';
+    }, 2000);
 
     }).catch(error => { console.log(error) })
 

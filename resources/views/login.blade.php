@@ -6,6 +6,9 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Roadwatch | {{ $title }}</title>
+
+  <link rel="icon" type="image/x-icon" href="/img/favicon.png">
+  
   <meta content="" name="description">
   <meta content="" name="keywords">
 

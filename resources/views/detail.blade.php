@@ -31,6 +31,7 @@
                     <span class="d-none d-md-block ps-2">{{ session('name') }}</span>
                     <input type="hidden" id="hiddenField" value={{ session('token') }}>
                     <input type="hidden" id="roadId" value={{ $id }}>
+                    <input type="hidden" id="vilageId" value="">
                     <script>
                         var hiddenValue = document.getElementById('hiddenField').value;
                         // console.log(hiddenValue);
@@ -95,14 +96,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="roadName">Nama ruas</label>
-                                <input type="text" name="roadName" class="form-control" id="roadName" placeholder="Jalan Ngurah Rai">
+                                <input type="text" name="roadName" class="form-control" id="roadName" placeholder="Nama jalan">
                             </div>
                             <input type="hidden" id="hiddenEncodePath" name="encodedPath">
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="form-group">
                                         <label for="roadCode">kode ruas</label>
-                                        <input type="text" name="roadCode" class="form-control" id="roadCode" placeholder="Enter road type">
+                                        <input type="text" name="roadCode" class="form-control" id="roadCode" placeholder="Tipe jalan">
                                     </div>
                                 </div>
                                 <div class="col-sm">
@@ -157,6 +158,27 @@
                             
                             <button class="btn btn-primary flex-end" id="editDataButton">Perbarui Data</button>
                         </div>
+
+                        <br>
+
+                        <div class="modal-dialog" id="modal-dialog" style="visibility: hidden">
+                            <div class="card" id="card-dialog">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Hapus Jalan Berhasil</h5>
+                                    <p class="card-text text-center">Silahkan cek kembali datamu!</p>
+                    
+                                    <div class="lottie text-center">
+                                        <img src="{{ asset('img/success.gif') }}" alt="">
+                    
+                                    </div>
+                                    <div class="text-center">
+                                        <button class="btn btn-outline-primary" style="width: 18rem">
+                                            Oke
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
         
                 </div>
@@ -169,7 +191,9 @@
             </div>
         </div>
 
+    
     </div>
+
 
 
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -187,8 +211,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     
-    <script src="{{ asset('js/formDataFetch.js') }}"></script>
+    <script src="{{ asset('js/formDataFetchDetail.js') }}"></script>
     <script src="{{ asset('js/detail.js') }}"></script>
+    <script src="{{ asset('js/modal.js') }}"></script>
     
 
 
