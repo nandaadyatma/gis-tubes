@@ -79,6 +79,12 @@ body, html {
 
 }
 
+#reverseDirection.show {
+    background-color: #2176d6;
+    color: white;
+}
+
+
 
 
 #toggleSidebarBtn.show {

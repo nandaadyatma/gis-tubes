@@ -90,6 +90,7 @@
 
             <div class="card" id="polylineMenu">
                 <h6 id="pointNumber"></h6>
+                <button id="reverseDirection" class="btn btn-outline-primary " style="margin-bottom: 5px"><i class="bi bi-arrow-90deg-right"> Reverse direction</i></button>
                 <button id="deletePoint" class="btn btn-outline-danger "><i class="bi bi-backspace"> Delete point</i>
                 </button>
             </div>

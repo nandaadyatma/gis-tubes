@@ -20,6 +20,7 @@ L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
 // SideBar
 
 let isSideBarOpen = false
+let isReverseDirection = false
 
 var pointNumberElement = document.getElementById('pointNumber');
 
@@ -111,7 +112,11 @@ navigator.geolocation.getCurrentPosition(position => {
               marker.bindPopup(customPopup).openPopup();
             });
 
-            markers.push(marker);
+            if(isReverseDirection){
+              markers.unshift(marker)
+            } else {
+              markers.push(marker);
+            }
 
           
 
@@ -174,10 +179,28 @@ navigator.geolocation.getCurrentPosition(position => {
             
 
             // Hapus marker terakhir dari peta dan dari array
-            var lastMarker = markers.pop();
+            if (isReverseDirection) {
+              var lastMarker = markers.shift();   
+            } else {
+              var lastMarker = markers.pop();   
+            }
             map.removeLayer(lastMarker);
             updatePolyline();
           });
+        
+        document.getElementById('reverseDirection').addEventListener('click', function(){
+          reverseButton = document.getElementById('reverseDirection')
+
+          isReverseDirection = !isReverseDirection
+          reverseButton.classList.toggle('show');
+
+          if(isReverseDirection){
+            reverseButton.innerHTML = '<i class="bi bi-arrow-90deg-right"></i> Unreverse';
+          } else {
+            reverseButton.innerHTML = '<i class="bi bi-arrow-90deg-left"> Reverse direction';
+          }
+
+        })
 
         // update polyline
         function updatePolyline() {
