@@ -11,70 +11,71 @@
                 </div>
                 <div class="container mt-5">
                     <div class="row">
-                        <div class="col-sm">
+                        <div class="col-md">
                             <div class="card mb-3">
                                 <div class="card-header"><i class="bi bi-0-circle"></i> Total ruas jalan</div>
                                 <div class="card-body">
                                     <h1 class="card-title">{{ count($roadData) }}</h1>
                                 </div>
                             </div>
-                            
+
                         </div>
-                        <div class="col-sm">
+                        {{-- <div class="col-sm" style="display: none">
                             <div class="card text-white bg-danger mb-3">
                                 <div class="card-header"><i class="bi bi-1-circle"></i> Jalan kondisi rusak</div>
                                 <div class="card-body">
-                                    @php
-                                        $jumlahJalanRusak = 0;
-                                        foreach ($roadData as $data) {
-                                            if ($data['kondisi_id'] == 3) {
-                                                $jumlahJalanRusak += 1;
-                                            }
-                                        }
-                                    @endphp
-                                    <h1 class="card-title">{{ $jumlahJalanRusak }}</h1>
+                                    <h1 class="card-title" id="jumlahJalanRusak">{{ $jumlahJalanRusak }}</h1>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm" style="display: none">
                             <div class="card text-white bg-warning mb-3">
                                 <div class="card-header"><i class="bi bi-2-circle"></i> Jalan kondisi sedang</div>
                                 <div class="card-body">
-                                    @php
-                                        $jumlahJalanSedang = 0;
-                                        foreach ($roadData as $data) {
-                                            if ($data['kondisi_id'] == 2) {
-                                                $jumlahJalanSedang += 1;
-                                            }
-                                        }
-                                    @endphp
-                                    <h1 class="card-title">{{ $jumlahJalanSedang }}</h1>
+                                    <h1 class="card-title" id="jumlahJalanSedang">{{ $jumlahJalanSedang }}</h1>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm" style="display: none">
                             <div class="card text-white bg-success mb-3">
                                 <div class="card-header"><i class="bi bi-3-circle"></i> Jalan kondisi baik</div>
                                 <div class="card-body">
-                                    @php
-                                        $jumlahJalanBaik = 0;
-                                        foreach ($roadData as $data) {
-                                            if ($data['kondisi_id'] == 1) {
-                                                $jumlahJalanBaik += 1;
-                                            }
-                                        }
-                                    @endphp
-                                    <h1 class="card-title">{{ $jumlahJalanBaik }}</h1>
+                                    <h1 class="card-title" id="jumlahJalanBaik">{{ $jumlahJalanBaik }}</h1>
                                 </div>
                             </div>
+                        </div> --}}
+                        <div class="col-lg">
+                            <div id="chart1">
+                            </div>
                         </div>
+                        <div class="col-lg">
+                            <div id="chart2">
+                            </div>
+                        </div>
+                        <div class="col-lg">
+                            <div id="chart3">
+                            </div>
+                        </div>
+                        
                     </div>
+
                 </div>
 
 
                 <br>
+                <form method="GET" action="{{ route('getRoadData') }}">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="search"
+                            placeholder="Cari kata kunci seperti nama, kode, dan lainnya" aria-label="Cari kata kunci"
+                            aria-describedby="basic-addon2" value="{{ request('search') }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit"><i class="bi bi-search"></i> Cari data</button>
+                        </div>
+                    </div>
+                </form>
                 <table class="table table-rounded">
                     <thead>
+                        
                         <tr>
                             <th class="text-center">#</th>
                             <th class="text-center">id</th>
@@ -95,95 +96,13 @@
                             <tr>
                                 <td class="text-center">{{ $count }}</td>
                                 <td id="id">{{ $item['id'] }}</td>
-                                <td>{{ $item['kode_ruas'] }}</td>
                                 <td>{{ $item['nama_ruas'] }}</td>
+                                <td>{{ $item['kode_ruas'] }}</td>
                                 <td>{{ $item['panjang'] }}</td>
                                 <td>{{ $item['lebar'] }}</td>
-                                @php
-                                    $eksisting = '';
-                                    switch ($item['eksisting_id']) {
-                                        case 1:
-                                            $eksisting = 'Tanah';
-                                            break;
-
-                                        case 2:
-                                            $eksisting = 'Tanah/beton';
-                                            break;
-
-                                        case 3:
-                                            $eksisting = 'Perkerasan';
-                                            break;
-
-                                        case 4:
-                                            $eksisting = 'Koral';
-                                            break;
-
-                                        case 5:
-                                            $eksisting = 'Lapen';
-                                            break;
-
-                                        case 6:
-                                            $eksisting = 'Paving';
-                                            break;
-
-                                        case 7:
-                                            $eksisting = 'Hotmix';
-                                            break;
-
-                                        case 8:
-                                            $eksisting = 'Beton';
-                                            break;
-
-                                        case 9:
-                                            $eksisting = 'Beton/Lapen';
-                                            break;
-
-                                        default:
-                                            $eksisting = '-';
-                                            break;
-                                    }
-
-                                    $kondisi = '';
-                                    switch ($item['kondisi_id']) {
-                                        case 1:
-                                            $kondisi = 'Baik';
-                                            break;
-
-                                        case 2:
-                                            $kondisi = 'Sedang';
-                                            break;
-
-                                        case 3:
-                                            $kondisi = 'Rusak';
-                                            break;
-
-                                        default:
-                                            $kondisi = '-';
-                                            break;
-                                    }
-
-                                    $jenisJalan = '';
-                                    switch ($item['jenisjalan_id']) {
-                                        case 1:
-                                            $jenisJalan = 'Desa';
-                                            break;
-
-                                        case 2:
-                                            $jenisJalan = 'Kabupaten';
-                                            break;
-
-                                        case 3:
-                                            $jenisJalan = 'Provinsi';
-                                            break;
-
-                                        default:
-                                            $jenisJalan = '-';
-                                            break;
-                                    }
-                                @endphp
-                                <td>{{ $eksisting }}</td>
-                                <td>{{ $kondisi }}</td>
-                                <td>{{ $jenisJalan }}</td>
+                                <td>{{ $item['nama_eksisting'] }}</td>
+                                <td>{{ $item['nama_kondisi'] }}</td>
+                                <td>{{ $item['nama_jenis_jalan'] }}</td>
                                 <td class="text-center d-flex justify-content-center">
 
 
@@ -229,7 +148,17 @@
                 </div>
             </div>
         @endif
-        
+
+        <input type="hidden" id="jumlahJalanBaik" value={{ $jumlahJalanBaik }}>
+        <input type="hidden" id="jumlahJalanSedang" value={{ $jumlahJalanSedang }}>
+        <input type="hidden" id="jumlahJalanRusak" value={{ $jumlahJalanRusak }}>
+
+        <input type="hidden" id="jumlahJalanProvinsi" value={{ $jumlahJalanProvinsi }}>
+        <input type="hidden" id="jumlahJalanKabupaten" value={{ $jumlahJalanKabupaten }}>
+        <input type="hidden" id="jumlahJalanDesa" value={{ $jumlahJalanDesa }}>
+
+        {{-- @dd($jumlahJalanBaik) --}}
+
 
 
     </div>
@@ -238,8 +167,59 @@
 
 @section('js')
     {{-- for fetch api  --}}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        let jumlahJalanBaik = parseInt(document.getElementById("jumlahJalanBaik").value);
+        let jumlahJalanSedang = parseInt(document.getElementById("jumlahJalanSedang").value);
+        let jumlahJalanRusak = parseInt(document.getElementById("jumlahJalanRusak").value);
+
+        let jumlahJalanDesa = parseInt(document.getElementById("jumlahJalanDesa").value);
+        let jumlahJalanKabupaten = parseInt(document.getElementById("jumlahJalanKabupaten").value);
+        let jumlahJalanProvinsi = parseInt(document.getElementById("jumlahJalanProvinsi").value);
+
+        var jumlahJalanBerdasarkanKondisi = {
+            series: [jumlahJalanBaik, jumlahJalanRusak, jumlahJalanSedang],
+                    chart: {
+                      height: 350,
+                      type: 'donut',
+                      toolbar: {
+                        show: false
+                      }
+                    },
+              
+              
+            
+            
+                    labels: ['Baik', 'Rusak', 'Sedang'],
+        }
+
+        var jumlahJalanBerdasarkanWilayah = {
+            series: [jumlahJalanDesa, jumlahJalanKabupaten, jumlahJalanProvinsi],
+                    chart: {
+                      height: 350,
+                      type: 'pie',
+                      toolbar: {
+                        show: false
+                      }
+                    },
+              
+              
+            
+            
+                    labels: ['Desa', 'Kabupaten', 'Provinsi'],
+        }
+
+        var chart1 = new ApexCharts(document.querySelector("#chart1"), jumlahJalanBerdasarkanKondisi);
+        chart1.render();
+        var chart2 = new ApexCharts(document.querySelector("#chart2"), jumlahJalanBerdasarkanWilayah);
+        chart2.render();
+        var chart3 = new ApexCharts(document.querySelector("#chart3"), jumlahJalanBerdasarkanWilayah);
+        chart3.render();
+        
+    </script>
 
     <script src="js/app.js"></script>
     <script src="js/MapDataFetch.js"></script>

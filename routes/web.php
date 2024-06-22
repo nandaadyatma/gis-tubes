@@ -60,7 +60,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/createNewRoad', [RoadController::class, 'createNewRoad'])->name('createNewRoad');
 
-Route::get('/data',[RoadController::class, 'getRoadData']);
+Route::get('/data',[RoadController::class, 'getRoadData'])->name('getRoadData');
 
 Route::get('/welcome', function(){
     return view('welcome');
