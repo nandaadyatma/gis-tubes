@@ -53,9 +53,10 @@
     </div>
     <div class="main-container">
         <div class="main-content">
- 
+            
+            
         
-
+            
             <div id="map">
             </div>
             <div class="sidebar-container">
@@ -164,7 +165,7 @@
                         <div class="modal-dialog" id="modal-dialog" style="visibility: hidden">
                             <div class="card" id="card-dialog">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center">Hapus Jalan Berhasil</h5>
+                                    <h5 class="card-title text-center">Update Jalan Berhasil</h5>
                                     <p class="card-text text-center">Silahkan cek kembali datamu!</p>
                     
                                     <div class="lottie text-center">
@@ -182,6 +183,7 @@
                     </div>
         
                 </div>
+                
                 <button id="toggleSidebarBtn" class="btn btn-primary"><i class="bi bi-chevron-left"></i></button>
         
                 <div class="card" id="polylineMenu">

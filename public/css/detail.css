@@ -126,6 +126,19 @@ body, html {
     z-index: 997;
 }
 
+.modal-place {
+    padding-top: 15%;
+    padding-left: auto;
+    padding-right: auto;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.397);
+    margin: auto;
+    z-index: 1001;
+}
+
+
+
 
 @keyframes spin {
     0% {

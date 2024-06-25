@@ -157,6 +157,16 @@
         <input type="hidden" id="jumlahJalanKabupaten" value={{ $jumlahJalanKabupaten }}>
         <input type="hidden" id="jumlahJalanDesa" value={{ $jumlahJalanDesa }}>
 
+        <input type="hidden" id="jumlahEksistingTanah" value={{ $jumlahEksistingTanah }}>
+        <input type="hidden" id="jumlahEksistingTanahBeton" value={{ $jumlahEksistingTanahBeton }}>
+        <input type="hidden" id="jumlahEksistingPerkerasan" value={{ $jumlahEksistingPerkerasan }}>
+        <input type="hidden" id="jumlahEksistingKoral" value={{ $jumlahEksistingKoral }}>
+        <input type="hidden" id="jumlahEksistingLapen" value={{ $jumlahEksistingLapen }}>
+        <input type="hidden" id="jumlahEksistingPaving" value={{ $jumlahEksistingPaving }}>
+        <input type="hidden" id="jumlahEksistingHotmix" value={{ $jumlahEksistingHotmix }}>
+        <input type="hidden" id="jumlahEksistingBeton" value={{ $jumlahEksistingBeton }}>
+        <input type="hidden" id="jumlahEksistingBetonLapen" value={{ $jumlahEksistingBetonLapen }}>
+
         {{-- @dd($jumlahJalanBaik) --}}
 
 
@@ -180,6 +190,16 @@
         let jumlahJalanKabupaten = parseInt(document.getElementById("jumlahJalanKabupaten").value);
         let jumlahJalanProvinsi = parseInt(document.getElementById("jumlahJalanProvinsi").value);
 
+        let jumlahJalanTanah= parseInt(document.getElementById("jumlahEksistingTanah").value);
+        let jumlahJalanTanahBeton = parseInt(document.getElementById("jumlahEksistingTanahBeton").value);
+        let jumlahJalanPerkerasan = parseInt(document.getElementById("jumlahEksistingPerkerasan").value);
+        let jumlahJalanKoral = parseInt(document.getElementById("jumlahEksistingKoral").value);
+        let jumlahJalanLapen = parseInt(document.getElementById("jumlahEksistingLapen").value);
+        let jumlahJalanPaving = parseInt(document.getElementById("jumlahEksistingPaving").value);
+        let jumlahJalanHotmix = parseInt(document.getElementById("jumlahEksistingHotmix").value);
+        let jumlahJalanBeton = parseInt(document.getElementById("jumlahEksistingBeton").value);
+        let jumlahJalanBetonLapen = parseInt(document.getElementById("jumlahEksistingBetonLapen").value);
+
         var jumlahJalanBerdasarkanKondisi = {
             series: [jumlahJalanBaik, jumlahJalanRusak, jumlahJalanSedang],
                     chart: {
@@ -194,6 +214,22 @@
             
             
                     labels: ['Baik', 'Rusak', 'Sedang'],
+        }
+
+        var jumlahJalanBerdasarkanEksisting = {
+            series: [jumlahJalanTanah, jumlahJalanTanahBeton, jumlahJalanPerkerasan, jumlahJalanKoral, jumlahJalanLapen, jumlahJalanPaving, jumlahJalanHotmix, jumlahJalanBeton, jumlahJalanBetonLapen],
+                    chart: {
+                      height: 350,
+                      type: 'pie',
+                      toolbar: {
+                        show: false
+                      }
+                    },
+              
+              
+            
+            
+                    labels: ['Tanah', 'Tanah/Beton', 'Perkerasan', 'Koral', 'Lapen', 'Paving', 'Hotmix', 'Beton', 'Beton/Lapen'],
         }
 
         var jumlahJalanBerdasarkanWilayah = {
@@ -214,7 +250,7 @@
 
         var chart1 = new ApexCharts(document.querySelector("#chart1"), jumlahJalanBerdasarkanKondisi);
         chart1.render();
-        var chart2 = new ApexCharts(document.querySelector("#chart2"), jumlahJalanBerdasarkanWilayah);
+        var chart2 = new ApexCharts(document.querySelector("#chart2"), jumlahJalanBerdasarkanEksisting);
         chart2.render();
         var chart3 = new ApexCharts(document.querySelector("#chart3"), jumlahJalanBerdasarkanWilayah);
         chart3.render();

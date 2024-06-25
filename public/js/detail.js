@@ -397,24 +397,30 @@ function getDetailDataById(id) {
 }
 
 function deleteRoadDataById(id) {
-  axios.delete('https://gisapis.manpits.xyz/api/ruasjalan/' + id, {
-    headers: {
-      'Authorization': `Bearer ${token2}`
+
+  let sureDelete = confirm("Yakin mau hapus data?");
+
+  if(sureDelete){
+
+    axios.delete('https://gisapis.manpits.xyz/api/ruasjalan/' + id, {
+      headers: {
+        'Authorization': `Bearer ${token2}`
+      }
+    }).then(response => {
+      var data = response.data
+      // console.log(response.data)
+      if (data.status == 'success') {
+        console.log(`Data with Id: ${roadId} has deleted`);
+        alert(`Data with Id: ${roadId} has deleted`);
+        window.location.replace('/')
+      }
     }
-  }).then(response => {
-    var data = response.data
-    // console.log(response.data)
-    if (data.status == 'success') {
-      console.log(`Data with Id: ${roadId} has deleted`);
-      alert(`Data with Id: ${roadId} has deleted`);
-      window.location.replace('/')
+    ).catch(error => {
+      console.error("Terjadi kesalahan:", error);
+      alert('Gagal menghapus data');
     }
+    )
   }
-  ).catch(error => {
-    console.error("Terjadi kesalahan:", error);
-    alert('Gagal menghapus data');
-  }
-  )
 }
 
 deleteButton.addEventListener('click', function () {

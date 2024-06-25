@@ -161,6 +161,17 @@ class RoadController extends Controller
                 $jumlahJalanProvinsi = count(array_filter($data, fn($item) => $item['jenisjalan_id'] == 3));
 
 
+                $jumlahEksistingTanah = count(array_filter($data, fn($item) => $item['eksisting_id'] == 1));
+                $jumlahEksistingTanahBeton = count(array_filter($data, fn($item) => $item['eksisting_id'] == 2));
+                $jumlahEksistingPerkerasan = count(array_filter($data, fn($item) => $item['eksisting_id'] == 3));
+                $jumlahEksistingKoral = count(array_filter($data, fn($item) => $item['eksisting_id'] == 4));
+                $jumlahEksistingLapen = count(array_filter($data, fn($item) => $item['eksisting_id'] == 5));
+                $jumlahEksistingPaving = count(array_filter($data, fn($item) => $item['eksisting_id'] == 6));
+                $jumlahEksistingHotmix = count(array_filter($data, fn($item) => $item['eksisting_id'] == 7));
+                $jumlahEksistingBeton = count(array_filter($data, fn($item) => $item['eksisting_id'] == 8));
+                $jumlahEksistingBetonLapen = count(array_filter($data, fn($item) => $item['eksisting_id'] == 9));
+
+
 
                 
 
@@ -174,6 +185,15 @@ class RoadController extends Controller
                     'jumlahJalanDesa' => $jumlahJalanDesa,
                     'jumlahJalanKabupaten' => $jumlahJalanKabupaten,
                     'jumlahJalanProvinsi' => $jumlahJalanProvinsi,
+                    'jumlahEksistingTanah' => $jumlahEksistingTanah,
+                    'jumlahEksistingTanahBeton' => $jumlahEksistingTanahBeton,
+                    'jumlahEksistingPerkerasan' => $jumlahEksistingPerkerasan,
+                    'jumlahEksistingKoral' => $jumlahEksistingKoral,
+                    'jumlahEksistingLapen' => $jumlahEksistingLapen,
+                    'jumlahEksistingPaving' => $jumlahEksistingPaving,
+                    'jumlahEksistingHotmix' => $jumlahEksistingHotmix,
+                    'jumlahEksistingBeton' => $jumlahEksistingBeton,
+                    'jumlahEksistingBetonLapen' => $jumlahEksistingBetonLapen,
                 ]);
             }
         }
