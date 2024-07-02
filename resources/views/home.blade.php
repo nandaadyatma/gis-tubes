@@ -95,6 +95,51 @@
                 </button>
             </div>
 
+            <div class="card" id="mapMenu">
+                <h6 >Option</h6>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="tooltipSwitch" checked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Tooltip Kode Jalan</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="goodRoadSwitch" checked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Jalan Baik</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <img src="{{ asset('img/good_road.png') }}" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="moderateRoadSwitch" checked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Jalan Sedang</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <img src="{{ asset('img/moderate_road.png') }}" alt="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="damagedRoadSwitch" checked>
+                            <label class="form-check-label" for="">Jalan Rusak</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <img src="{{ asset('img/damaged_road.png') }}" alt="">
+                    </div>
+                </div>
+            </div>
+
         </div>
         @if(session('success-login'))
         <div class="modal-dialog" id="modal-dialog">

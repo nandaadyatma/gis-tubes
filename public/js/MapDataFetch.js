@@ -1,22 +1,45 @@
 var polylineRoadData = []
-// var roadDataFetching = []
 
-// getRoadData();
+var isTootipVisible = true;
+var isGoodRoadVisible = true;
+var isModerateRoadVisible = true;
+var isDamagedRoadVisible = true;
 
-// function getRoadData(){
-//     axios.get('https://gisapis.manpits.xyz/api/ruasjalan', {headers: {
-//     'Authorization': `Bearer ${token}`
-//     }
-//     }).then(response => {
-//         // console.log(response.data.ruasjalan);
-//         let data = response.data.ruasjalan;
-//         data.forEach(data => {
-            
-//             roadDataFetching.push(data)
-            
-//         });
-//     })
-// }
+document.getElementById('tooltipSwitch').addEventListener('change', function(event){
+    if(event.target.checked) {
+        isTootipVisible = true
+    } else {
+        isTootipVisible = false
+    }
+    drawRoadData(10)
+})
+
+document.getElementById('goodRoadSwitch').addEventListener('change', function(event){
+    if(event.target.checked) {
+        isGoodRoadVisible = true
+    } else {
+        isGoodRoadVisible = false
+    }
+    drawRoadData(10)
+})
+
+document.getElementById('moderateRoadSwitch').addEventListener('change', function(event){
+    if(event.target.checked) {
+        isModerateRoadVisible = true
+    } else {
+        isModerateRoadVisible = false
+    }
+    drawRoadData(10)
+})
+
+document.getElementById('damagedRoadSwitch').addEventListener('change', function(event){
+    if(event.target.checked) {
+        isDamagedRoadVisible = true
+    } else {
+        isDamagedRoadVisible = false
+    }
+    drawRoadData(10)
+})
 
 function drawRoadData(lineWidth){
     // reset polyline
@@ -42,19 +65,27 @@ function drawRoadData(lineWidth){
             var decodedData = decodePolyline(data.paths);
             console.log(decodedData);
 
+
+
                 switch (data.kondisi_id) {
                     case 1: { 
-                        drawLine(color1 = '#1CC861', color2 = '#10691E', width = lineWidth, data = data, decodedData = decodedData )
+                        if(isGoodRoadVisible){
+                            drawLine(color1 = '#1CC861', color2 = '#10691E', width = lineWidth, data = data, decodedData = decodedData )
+                        }
                     }
                     break;
                     case 2:{
-                        drawLine(color1 = '#FFBD13', color2 = '#7B6000', width = lineWidth, data = data, decodedData = decodedData )
+                        if(isModerateRoadVisible){
+                            drawLine(color1 = '#FFBD13', color2 = '#7B6000', width = lineWidth, data = data, decodedData = decodedData )
+                        }
                     }
 
                     break;
 
                     case 3:{
-                        drawLine(color1 = '#F93844', color2 = '#7B6000', width = lineWidth, data = data, decodedData = decodedData )
+                        if (isDamagedRoadVisible) {  
+                            drawLine(color1 = '#F93844', color2 = '#7B6000', width = lineWidth, data = data, decodedData = decodedData )
+                        }
                     }
                         
                         break;
@@ -71,6 +102,8 @@ function drawRoadData(lineWidth){
 
 function drawLine(color1, color2, width, data, decodedData){
 
+ 
+
     var outlinePolyline = L.polyline(decodedData, {
         color: color2,
         weight: 8 // Lebar garis outline
@@ -80,6 +113,12 @@ function drawLine(color1, color2, width, data, decodedData){
         color: color1,
         weight: 4 // Lebar garis utama
     }).addTo(map);
+
+    if (isTootipVisible) {
+        
+        mainPolyline.bindTooltip(data.kode_ruas, {permanent: true, direction: 'center', className: 'my-tooltip'}).openTooltip();
+    }
+
 
     var popupContent2 = `
     <table>

@@ -145,7 +145,9 @@ class RoadController extends Controller
                         return (
                             stripos($item['nama_ruas'], $search) !== false ||
                             stripos($item['kode_ruas'], $search) !== false ||
-                            stripos($item['nama_eksisting'], $search) !== false
+                            stripos($item['nama_eksisting'], $search) !== false ||
+                            stripos($item['nama_jenis_jalan'], $search) !== false ||
+                            stripos($item['nama_kondisi'], $search) !== false 
 
                         );
                     });

@@ -80,6 +80,14 @@ body, html {
 
 }
 
+#mapMenu {
+    position: absolute;
+    padding: 10px;
+    bottom: 20px;
+    left: 20px;
+    z-index: 998;
+}
+
 #reverseDirection.show {
     background-color: #2176d6;
     color: white;
